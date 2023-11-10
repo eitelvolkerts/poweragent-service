@@ -5,3 +5,5 @@ Instructions:
 1. Clone the repository
 2. Run `bash ./setupScript.sh $workerPk $workerAddress $workerPassword $rpc $agentAddress $chainName`
 3. Enjoy
+
+Note: stdout and stderr on Alpine are kept in /var/log
