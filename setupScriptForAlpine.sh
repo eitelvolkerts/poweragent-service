@@ -28,7 +28,7 @@ printf "#!/bin/sh \n\n echo $$ > /run/agent.pid \n\nNETWORK_NAME=$6 NETWORK_RPC=
 chmod a+x ./startupScript.sh
 echo $(pwd)
 #printf "[Unit]\nDescription=PowerAgent Noderunner\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nRestart=always\nExecStart=$(pwd)/startupScript.sh\n\n[Install]\nWantedBy=default.target" > /etc/systemd/system/PowerAgent.service
-printf "#!/sbin/openrc-run\n\ncommand="$(pwd)/startupScript.sh &> ~/agentlogs.log"\n\ncommand_args=""\npidfile="/run/agent.pid"\ncommand_background=true\ndepend() {\n	after net\n}" > /etc/init.d/poweragent
+printf "#!/sbin/openrc-run\n\ncommand="$(pwd)/startupScript.sh"\n\ncommand_background=true\n\ncommand_args=""\npidfile="/run/agent.pid"\ndepend() {\n   after net\n}" > /etc/init.d/poweragent
 chmod +x /etc/init.d/poweragent
 rc-update add poweragent default
 rc-service poweragent start
